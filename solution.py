@@ -5,8 +5,6 @@ from socket import *
 def smtp_client(port=1025, mailserver='127.0.0.1'):
     msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
-    sEmail = "mg6931@nyu.edu"
-    rEmail = "mcgalair@gmail.com"
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
 
@@ -31,14 +29,14 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send MAIL FROM command and handle server response.
     # Fill in start
-    mailCommand = 'MAIL FROM: ' + sEmail + '\r\n'
+    mailCommand = 'MAIL FROM:<mg6931@nyu.edu>\r\n'
     clientSocket.send(mailCommand.encode())
     recv2 = clientSocket.recv(1024).decode()
     # Fill in end
 
     # Send RCPT TO command and handle server response.
     # Fill in start
-    rcptCommand = 'RCPT TO: ' + rEmail + '\r\n'
+    rcptCommand = 'RCPT TO:<mg6931@nyu.edu>\r\n'
     clientSocket.send(rcptCommand.encode())
     recv3 = clientSocket.recv(1024).decode()
     # Fill in end
@@ -68,6 +66,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     recv6 = clientSocket.recv(1024).decode()
     # Fill in end
 
+    clientSocket.close()
 
-#if __name__ == '__main__':
-    #smtp_client(1025, '127.0.0.1')
+if __name__ == '__main__':
+    smtp_client(1025, '127.0.0.1')
