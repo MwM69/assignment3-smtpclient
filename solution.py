@@ -5,6 +5,8 @@ from socket import *
 def smtp_client(port=1025, mailserver='127.0.0.1'):
     msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
+    sEmail = "mg6931@nyu.edu"
+    rEmail = "mcgalair@gmail.com"
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
 
@@ -29,23 +31,23 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send MAIL FROM command and handle server response.
     # Fill in start
-    mailCommand = 'MAIL FROM: <mg6931@nyu.edu>\r\n'
+    mailCommand = 'MAIL FROM: ' + sEmail + '\r\n'
     clientSocket.send(mailCommand.encode())
-    recv1 = clientSocket.recv(1024).decode()
+    recv2 = clientSocket.recv(1024).decode()
     # Fill in end
 
     # Send RCPT TO command and handle server response.
     # Fill in start
-    rcptCommand = 'RCPT TO: <mcgalair@gmail.com>\r\n'
+    rcptCommand = 'RCPT TO: ' + rEmail + '\r\n'
     clientSocket.send(rcptCommand.encode())
-    recv1 = clientSocket.recv(1024).decode()
+    recv3 = clientSocket.recv(1024).decode()
     # Fill in end
 
     # Send DATA command and handle server response.
     # Fill in start
     dataCommand = 'DATA\r\n'
     clientSocket.send(dataCommand.endcode())
-    recv1 = clientSocket.recv(1024).decode()
+    recv4 = clientSocket.recv(1024).decode()
     # Fill in end
 
     # Send message data.
@@ -55,17 +57,17 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Message ends with a single period, send message end and handle server response.
     # Fill in start
-    clientSocket.send(endmsg).encode()
-    recv1 = clientSocket.recv(1024).decode()
+    clientSocket.send(endmsg.encode())
+    recv5 = clientSocket.recv(1024).decode()
     # Fill in end
 
     # Send QUIT command and handle server response.
     # Fill in start
     quitCommand = 'QUIT\r\n'
-    clientSocket.send(quitCommand).encode()
-    recv1 = clientSocket.recv(1024).decode()
+    clientSocket.send(quitCommand.encode())
+    recv6 = clientSocket.recv(1024).decode()
     # Fill in end
 
 
-if __name__ == '__main__':
-    smtp_client(1025, '127.0.0.1')
+#if __name__ == '__main__':
+    #smtp_client(1025, '127.0.0.1')
